@@ -10,7 +10,7 @@
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+    <title>Login and Reg</title>
   </head>
   <body>
     <div class="container">
@@ -19,18 +19,46 @@
             <h1>Register Here!</h1>
           <form action="user/register" method="post">
             {% csrf_token %}
+            {% if messages %}   
+                {% for message in messages %}    
+                    {% if 'first_name' in message.tags %}
+                    <p style=color:red;>{{ message }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
             <div class="form-group">
               <label for="first_name">First Name:</label>
               <input type="text" class="form-control" name="first_name" />
             </div>
+                      {% if messages %}   
+              {% for message in messages %}    
+                  {% if 'last_name' in message.tags%}
+                  <p style=color:red;>{{ message }}</p>
+                  {% endif %}
+              {% endfor %}
+          {% endif %}
             <div class="form-group">
               <label for="last_name">Last Name:</label>
               <input type="text" class="form-control" name="last_name" />
             </div>
+            {% if messages %}   
+    {% for message in messages %}    
+        {% if 'email' in message.tags%}
+        <p style=color:red;>{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
             <div class="form-group">
               <label for="email">Email:</label>
               <input type="email" class="form-control" name="email" />
             </div>
+            {% if messages %}   
+    {% for message in messages %}    
+        {% if 'password' in message.tags%}
+        <p style=color:red;>{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
             <div class="form-group">
               <label for="password">Password:</label>
               <input type="password" class="form-control" name="password" />
